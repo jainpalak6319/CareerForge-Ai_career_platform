@@ -1,6 +1,8 @@
 // src/pages/auth/Login.jsx
 import React from 'react';
 import slide1 from '../../assets/images/slide1.avif';
+import slide2 from '../../assets/images/slide2.avif';
+import slide3 from '../../assets/images/slide3.avif';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import { FaGoogle, FaLinkedin, FaEye, FaEyeSlash } from 'react-icons/fa';
 import AOS from 'aos';
@@ -82,7 +84,7 @@ const Login = () => {
     </Carousel.Item>
     <Carousel.Item>
       <img
-        src="https://cdn.unstop.com/uploads/images/homepage/opportunities-v2.webp"
+        src={slide2}
         className="d-block w-100 rounded"
         style={{ maxHeight: '400px', objectFit: 'cover' }}
         alt="Slide 2"
@@ -90,7 +92,7 @@ const Login = () => {
     </Carousel.Item>
     <Carousel.Item>
       <img
-        src="https://cdn.unstop.com/uploads/images/homepage/why-unstop-hero.webp"
+        src={slide3}
         className="d-block w-100 rounded"
         style={{ maxHeight: '400px', objectFit: 'cover' }}
         alt="Slide 3"

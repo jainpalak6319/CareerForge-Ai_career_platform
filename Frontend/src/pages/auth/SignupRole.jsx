@@ -4,6 +4,10 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import slide1 from '../../assets/images/slide1.avif';
+import slide2 from '../../assets/images/slide2.avif';
+import slide3 from '../../assets/images/slide3.avif';
+import { Carousel } from 'react-bootstrap';
 
 const SignupRole = () => {
   const navigate = useNavigate();
@@ -17,32 +21,73 @@ const SignupRole = () => {
     setSelectedRole(role);
   };
 
-  const handleNext = () => {
-    if (!selectedRole) {
-      alert('Please select a role to continue.');
-      return;
-    }
-    localStorage.setItem('careerforge-role', selectedRole);
-    navigate('/signup/details');
-  };
+ const handleNext = () => {
+  if (!selectedRole) {
+    alert('Please select a role to continue.');
+    return;
+  }
+
+  localStorage.setItem('careerforge-role', selectedRole);
+
+  if (selectedRole === 'jobseeker') {
+    navigate('/signup/jobseeker');
+  } else if (selectedRole === 'recruiter') {
+    navigate('/signup/recruiter');
+  }
+};
+
 
   return (
     <Container fluid className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
       <Row className="w-100" style={{ maxWidth: '1200px' }}>
         {/* Left Panel */}
         <Col
-          md={6}
-          className="d-none d-md-flex align-items-center justify-content-center p-4"
-          style={{ backgroundColor: '#FDEBED', borderRadius: '20px 0 0 20px' }}
-          data-aos="fade-right"
-        >
-          <img
-            src="https://cdn.unstop.com/uploads/images/homepage/job-types.webp"
-            alt="Job Types"
-            className="img-fluid rounded"
-            style={{ maxHeight: '500px' }}
-          />
-        </Col>
+  md={6}
+  className="d-none d-md-flex flex-column align-items-center justify-content-center p-4 text-center"
+  style={{
+    background: 'linear-gradient(135deg, #FDEBED 0%, #FFF4F9 100%)',
+    borderRadius: '20px 0 0 20px',
+  }}
+  data-aos="fade-right"
+>
+  {/* Text-Based Logo */}
+  <div className="mb-4">
+    <h2 style={{ color: '#2D2F4A', fontWeight: 'bold', letterSpacing: '1px' }}>
+      Career<span style={{ color: '#D96BA0' }}>Forge</span>
+    </h2>
+    <p className="text-muted" style={{ fontSize: '0.9rem' }}>
+      Unlock Opportunities, Shape Your Career
+    </p>
+  </div>
+
+  {/* Carousel */}
+  <Carousel style={{ width: '90%' }} interval={2500} fade>
+    <Carousel.Item>
+      <img
+        src={slide1}
+        className="d-block w-100 rounded"
+        style={{ maxHeight: '400px', objectFit: 'cover' }}
+        alt="Slide 1"
+      />
+    </Carousel.Item>
+    <Carousel.Item>
+      <img
+        src={slide2}
+        className="d-block w-100 rounded"
+        style={{ maxHeight: '400px', objectFit: 'cover' }}
+        alt="Slide 2"
+      />
+    </Carousel.Item>
+    <Carousel.Item>
+      <img
+        src={slide3}
+        className="d-block w-100 rounded"
+        style={{ maxHeight: '400px', objectFit: 'cover' }}
+        alt="Slide 3"
+      />
+    </Carousel.Item>
+  </Carousel>
+</Col>
 
         {/* Right Panel */}
         <Col
@@ -80,11 +125,18 @@ const SignupRole = () => {
           <div className="d-flex justify-content-between align-items-center mt-4">
             <a href="/login" style={{ color: '#2D2F4A' }}>Already have an account? Login</a>
             <Button
-              onClick={handleNext}
-              style={{ backgroundColor: '#2D2F4A', borderColor: '#2D2F4A' }}
-            >
-              Next
-            </Button>
+  onClick={handleNext}
+  disabled={!selectedRole}
+  style={{
+    backgroundColor: '#2D2F4A',
+    borderColor: '#2D2F4A',
+    opacity: selectedRole ? 1 : 0.6,
+    cursor: selectedRole ? 'pointer' : 'not-allowed'
+  }}
+>
+  Next
+</Button>
+
           </div>
         </Col>
       </Row>
