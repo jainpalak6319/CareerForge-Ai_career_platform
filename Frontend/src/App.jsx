@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
 import Login from './pages/auth/Login';
 import SignupRole from './pages/auth/SignupRole';
 import JobSeekerSignup from './pages/auth/JobSeekerSignup';
@@ -14,7 +15,8 @@ const App = () => {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+         <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/" element={<Navigate to="/login" />} /> */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup/role" element={<SignupRole />} />
         <Route path="/signup/jobseeker" element={<JobSeekerSignup />} />

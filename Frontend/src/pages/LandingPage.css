@@ -1,0 +1,106 @@
+:root {
+  --primary-dark: #2D2F4A;
+  --accent: #D96BA0;
+  --background: #FFFFFF;
+  --input-bg: #F5F5F5;
+  --text-dark: #333333;
+}
+
+/* Navbar */
+.landing-navbar {
+  background-color: var(--background);
+}
+
+.text-logo h2 {
+  font-weight: bold;
+  color: var(--primary-dark);
+  margin-bottom: 0;
+  letter-spacing: 1px;
+}
+.text-logo h2 span {
+  color: var(--accent);
+}
+.text-logo p {
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* Hero */
+.hero-section {
+  height: 80vh;
+  background: linear-gradient(to right, var(--primary-dark), var(--accent));
+  color: white;
+}
+
+.hero-section .highlight {
+  color: var(--accent);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-accent:hover {
+  background-color: #c6588d;
+  color: #fff;
+}
+
+/* Features */
+.section-title {
+  color: var(--primary-dark);
+  font-weight: bold;
+}
+
+.feature-card {
+  border-left: 5px solid var(--accent);
+  border-radius: 12px;
+  background-color: var(--background);
+}
+
+/* Footer */
+.footer-section {
+  background-color: var(--primary-dark);
+}
+/* Logo Scroller */
+.logos-section {
+  background-color: var(--background);
+}
+
+.logo-scroller {
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  gap: 60px;
+}
+
+.logo-item img {
+  height: 50px;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: transform 0.3s;
+}
+
+.logo-item img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
