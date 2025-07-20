@@ -41,7 +41,7 @@ const LandingPage = () => {
           <p data-aos="fade-up" data-aos-delay="200">
             Your personalized platform to connect job seekers with opportunities
           </p>
-          <Button href="/signup/role" className="btn-accent mt-3" data-aos="zoom-in" data-aos-delay="400">
+          <Button href="/resume-builder" className="btn-accent mt-3" data-aos="zoom-in" data-aos-delay="400">
             Get Started
           </Button>
         </Container>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import ResumeBuilder from './pages/ResumeBuilder';
 import LandingPage from './pages/LandingPage';
 import Login from './pages/auth/Login';
 import SignupRole from './pages/auth/SignupRole';
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/signup/jobseeker" element={<JobSeekerSignup />} />
         <Route path="/signup/recruiter" element={<RecruiterSignup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+         <Route path="/resume-builder" element={<ResumeBuilder />} />
         {/* Future protected dashboard route can go here */}
         <Route path="/dashboard" element={<h2 className="text-center mt-5">Welcome to Dashboard 🎉</h2>} />
       </Routes>

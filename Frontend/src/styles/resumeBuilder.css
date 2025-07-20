@@ -1,0 +1,94 @@
+/* ResumeBuilder.css */
+.resume-page {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  min-height: 100vh;
+  padding-top: 40px;
+  animation: backgroundSlide 10s infinite alternate;
+}
+
+.resume-container {
+  padding-bottom: 40px;
+}
+
+.resume-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(45, 47, 74, 0.15);
+  padding: 40px;
+  transition: transform 0.3s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-5px);
+}
+
+.resume-heading {
+  color: #2D2F4A;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.resume-subtext {
+  color: #6c757d;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #D96BA0;
+}
+
+.download-btn {
+  background-color: #2D2F4A !important;
+  border-color: #2D2F4A !important;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(217, 107, 160, 0.3);
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #D96BA0 !important;
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(217, 107, 160, 0.4);
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.7s ease-in-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backgroundSlide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+.btn-accent{
+  background-color: #2D2F4A;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-accent:hover {
+  background-color: #D96BA0;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 107, 160, 0.3);
+}
