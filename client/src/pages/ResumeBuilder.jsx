@@ -3,11 +3,14 @@ import React, { useState, useRef } from 'react';
 import ResumeTabs from '../components/resume/ResumeTabs';
 import ATSChecker from '../components/resume/ATSChecker';
 import { Container, Card } from 'react-bootstrap';
-
+import Header from '../components/mainpage/Header';
+import Footer from '../components/mainpage/Footer';
 const ResumeBuilder = () => {
   const [summary, setSummary] = useState("");
 
   return (
+    <>
+    <Header/>
     <div style={{ backgroundColor: '#F5F5F5', minHeight: '100vh', paddingTop: '40px' }}>
       <Container>
         <Card className="shadow p-4 border-0" style={{ backgroundColor: '#FFFFFF', borderRadius: '20px' }}>
@@ -50,6 +53,8 @@ const ResumeBuilder = () => {
         </Card>
       </Container>
     </div>
+  <Footer/>
+  </>
   );
 };
 

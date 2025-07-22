@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import ScrollToTop from './components/ScrollToTop';
 // Pages
-import LandingPage from './pages/LandingPage';
+import MainPage from './pages/MainPage';
 import Login from './pages/auth/Login';
 import SignupRole from './pages/auth/SignupRole';
 import JobSeekerSignup from './pages/auth/JobSeekerSignup';
@@ -20,13 +21,15 @@ import RecruiterDashboard from './pages/dashboard/RecruiterDashboard';
 // Routes
 import PrivateRoute from './routes/PrivateRoute';
 
+
 const App = () => {
   return (
     <>
       <Router>
+         <ScrollToTop /> {/* Placed here to trigger on route changes */}
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup/role" element={<SignupRole />} />
           <Route path="/signup/jobseeker" element={<JobSeekerSignup />} />
