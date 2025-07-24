@@ -1,11 +1,16 @@
 // src/components/resume/SkillsForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import { Card, Form, Button, Badge } from 'react-bootstrap';
-
+import { ResumeContext } from '../context/ResumeContext';
 const SkillsForm = ({ onNext }) => {
-  const [skills, setSkills] = useState([]);
-  const [input, setInput] = useState('');
+const { resumeData, setResumeData } = useContext(ResumeContext);
+const [skills, setSkills] = useState(resumeData.skills || []);
+const [input, setInput] = useState('');
+const [isSaved, setIsSaved] = useState(false); // for Save & Next button
 
+useEffect(() => {
+    setResumeData(prev => ({ ...prev, skills}));
+  }, [skills]);
   const addSkill = () => {
     if (input.trim()) {
       setSkills([...skills, input.trim()]);

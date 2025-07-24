@@ -1,12 +1,25 @@
 // src/components/resume/CertificatesForm.jsx
-import React, { useState } from 'react';
+import { exportToDocx } from '../../utils/exportDocx';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Form, Row, Col, Alert } from 'react-bootstrap';
+import { ResumeContext } from '../context/ResumeContext';
 
-const CertificatesForm = () => {
-  const [certificates, setCertificates] = useState([
-    { name: '', issuer: '', date: '', link: '' }
-  ]);
+const CertificatesForm = ({onPreview}) => {
+  const { resumeData, setResumeData } = useContext(ResumeContext);
+
+  // Initialize local state from context or fallback
+  const [certificates, setCertificates] = useState(
+    resumeData?.certificates?.length > 0
+      ? resumeData.certificates
+      : [{ name: '', issuer: '', date: '', link: '' }]
+  );
+
   const [showSuccess, setShowSuccess] = useState(false);
+
+  // Sync local state to context when certificates change
+  useEffect(() => {
+    setResumeData(prev => ({ ...prev, certificates }));
+  }, [certificates]);
 
   const handleChange = (index, field, value) => {
     const updated = [...certificates];
@@ -29,12 +42,10 @@ const CertificatesForm = () => {
   };
 
   const handlePreview = () => {
-    // Logic to open preview section or modal
     alert('Preview feature triggered. Implement preview logic.');
   };
 
   const handleDownload = () => {
-    // Logic to download resume PDF
     alert('Download feature triggered. Implement PDF generation logic.');
   };
 
@@ -125,17 +136,17 @@ const CertificatesForm = () => {
           <div className="d-flex justify-content-center gap-3">
             <Button
               variant="outline-primary"
-              onClick={handlePreview}
+              onClick={onPreview}
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
               Preview Resume
             </Button>
             <Button
-              variant="success"
-              onClick={handleDownload}
+             variant="secondary"
+            onClick={() => exportToDocx(resumeData)}
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
-              Download PDF
+              📄 Export as .DOCX
             </Button>
           </div>
         </>

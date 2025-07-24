@@ -7,6 +7,10 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 require('./config/passport')(passport);
 
+// ✅ New Routes (add these at the top with other imports)
+const resumeRoutes = require('./routes/resumeRoutes');
+const atsRoutes = require('./routes/atsRoutes');
+
 const app = express();
 
 // MongoDB connection
@@ -30,6 +34,10 @@ app.use(passport.session());
 
 // Routes
 app.use('/api/auth', authRoutes);
+
+// ✅ New APIs
+app.use('/api/resumes', resumeRoutes);
+app.use('/api/ats', atsRoutes);
 
 // Start
 const PORT = process.env.PORT || 5000;

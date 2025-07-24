@@ -1,9 +1,29 @@
 // src/components/resume/EducationForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
-
+import { ResumeContext } from '../context/ResumeContext';
 const EducationForm = ({ onNext }) => {
-  const [education, setEducation] = useState([{ degree: '', school: '', year: '' }]);
+const { resumeData, setResumeData } = useContext(ResumeContext);
+
+const [education, setEducation] = useState(() => {
+  return resumeData.education?.length
+    ? resumeData.education
+    : [{ degree: '', school: '', year: '' }];
+});
+
+  const [isValid, setIsValid] = useState(false);
+
+
+  useEffect(() => {
+    setResumeData(prev => ({ ...prev, education }));
+  }, [education]);
+
+  useEffect(() => {
+    const valid = education.every(
+      (edu) => edu.degree.trim() !== '' && edu.school.trim() !== '' && edu.year.trim() !== ''
+    );
+    setIsValid(valid);
+  }, [education]);
 
   const handleChange = (i, field, value) => {
     const updated = [...education];
@@ -16,7 +36,10 @@ const EducationForm = ({ onNext }) => {
   };
 
   const handleSaveAndNext = () => {
-    // Optional: Add validation or saving logic here
+    if (!isValid) {
+      alert('Please fill out all the education fields before proceeding.');
+      return;
+    }
     console.log('Education Info Saved:', education);
     onNext(); // Move to Experience tab
   };
@@ -51,7 +74,7 @@ const EducationForm = ({ onNext }) => {
           <Row>
             <Col md={6}>
               <Form.Label style={{ fontWeight: '500', color: '#2D2F4A' }}>Passing Year</Form.Label>
-              <Form.Control
+              <Form.Control type='number'
                 value={edu.year}
                 placeholder="e.g., 2024"
                 onChange={(e) => handleChange(i, 'year', e.target.value)}
@@ -71,7 +94,7 @@ const EducationForm = ({ onNext }) => {
           + Add More
         </Button>
 
-        <Button
+        <Button disabled={!isValid}
           onClick={handleSaveAndNext}
           className="btn btn-primary"
           style={{
@@ -83,6 +106,7 @@ const EducationForm = ({ onNext }) => {
         >
           Save & Next
         </Button>
+
       </div>
     </Card>
   );

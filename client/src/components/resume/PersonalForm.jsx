@@ -1,17 +1,27 @@
 // src/components/resume/PersonalForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import { Form, Row, Col, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-
+import { ResumeContext } from '../context/ResumeContext';
 const PersonalForm = ({ onNext }) => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    location: '',
-    linkedin: '',
-    portfolio: ''
-  });
+  const { resumeData, setResumeData } = useContext(ResumeContext);
+
+const [formData, setFormData] = useState(() => {
+  return resumeData.formData && Object.keys(resumeData.formData).length > 0
+    ? resumeData.formData
+    : {
+        fullName: '',
+        email: '',
+        phone: '',
+        location: '',
+        linkedin: '',
+        portfolio: ''
+      };
+});
+
+ useEffect(() => {
+    setResumeData(prev => ({ ...prev, formData }));
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

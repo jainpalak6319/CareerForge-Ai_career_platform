@@ -1,19 +1,48 @@
-// src/components/resume/ATSChecker.jsx
 import React, { useState } from 'react';
-import { Card, ProgressBar, Button, Form } from 'react-bootstrap';
+import { Card, ProgressBar, Form } from 'react-bootstrap';
 
 const ATSChecker = () => {
   const [file, setFile] = useState(null);
   const [score, setScore] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
 
-  const handleFileUpload = (e) => {
-    const uploaded = e.target.files[0];
-    setFile(uploaded);
+  const handleFileUpload = (uploadedFile) => {
+    setFile(uploadedFile);
 
     // Simulate ATS score for demo
     setTimeout(() => {
       setScore(Math.floor(Math.random() * 41) + 60); // Random score 60–100
     }, 1000);
+  };
+
+  const handleInputChange = (e) => {
+    const uploaded = e.target.files[0];
+    if (uploaded) {
+      handleFileUpload(uploaded);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile && (droppedFile.type === "application/pdf" || droppedFile.name.endsWith(".docx") || droppedFile.name.endsWith(".doc"))) {
+      handleFileUpload(droppedFile);
+    }
   };
 
   return (
@@ -22,17 +51,35 @@ const ATSChecker = () => {
         📤 Check Your Resume with ATS
       </h4>
       <p className="text-secondary">
-        Upload your resume to see how it performs against common ATS filters.
+        Upload your resume or drag & drop it below to see how it performs against common ATS filters.
       </p>
 
+      {/* 🔽 Drag and Drop Area */}
+      <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        className="mb-3 p-4 text-center border border-2 rounded-3"
+        style={{
+          backgroundColor: isDragging ? '#e9ecef' : '#ffffff',
+          borderStyle: 'dashed',
+          color: '#777',
+          transition: 'background-color 0.2s ease',
+          cursor: 'pointer'
+        }}
+      >
+        {isDragging ? "📂 Drop your file here..." : "🖱️ Drag and drop your resume here"}
+      </div>
+
+      {/* 🔼 Traditional File Upload */}
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Label className="fw-semibold text-dark">
-          Select Resume File (.pdf or .docx)
+          Or select manually (.pdf or .docx)
         </Form.Label>
         <Form.Control
           type="file"
           accept=".pdf,.doc,.docx"
-          onChange={handleFileUpload}
+          onChange={handleInputChange}
           className="rounded-3 border border-2"
           style={{ backgroundColor: '#ffffff' }}
         />

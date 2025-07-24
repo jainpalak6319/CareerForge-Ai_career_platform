@@ -1,11 +1,18 @@
 // src/components/resume/ExperienceForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
-
+import { ResumeContext } from '../context/ResumeContext';
 const ExperienceForm = ({ onNext }) => {
-  const [experience, setExperience] = useState([
-    { jobTitle: '', company: '', duration: '', description: '' },
-  ]);
+  const { resumeData, setResumeData } = useContext(ResumeContext);
+  const [experience, setExperience] = useState(() => {
+  return resumeData.experience?.length
+    ? resumeData.experience
+    : [{ jobTitle: '', company: '', duration: '', description: '' }];
+});
+
+useEffect(() => {
+    setResumeData(prev => ({ ...prev, experience}));
+  }, [experience]);
 
   const handleChange = (i, field, value) => {
     const updated = [...experience];

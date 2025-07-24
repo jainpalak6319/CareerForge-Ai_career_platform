@@ -1,17 +1,25 @@
 // src/components/resume/ProjectsForm.jsx
-import React, { useState } from 'react';
+import React, { useState,useEffect,useContext} from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
-
+import { ResumeContext } from '../context/ResumeContext';
 const ProjectsForm = ({ onNext }) => {
-  const [projects, setProjects] = useState([
-    { title: '', tech: '', link: '', description: '' },
-  ]);
+  const { resumeData, setResumeData } = useContext(ResumeContext);
+  const [projects, setProjects] = useState(
+    resumeData.projects && resumeData.projects.length > 0
+      ? resumeData.projects
+      : [{ title: '', tech: '', link: '', description: '' }]
+  );
+useEffect(() => {
+    setResumeData(prev => ({ ...prev, projects}));
+  }, [projects]);
 
-  const handleChange = (i, field, value) => {
-    const updated = [...projects];
-    updated[i][field] = value;
-    setProjects(updated);
-  };
+ const handleChange = (i, field, value) => {
+  const updated = projects.map((proj, idx) =>
+    idx === i ? { ...proj, [field]: value } : proj
+  );
+  setProjects(updated);
+};
+
 
   const addProject = () => {
     setProjects([

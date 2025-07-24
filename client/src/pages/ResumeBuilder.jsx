@@ -5,9 +5,8 @@ import ATSChecker from '../components/resume/ATSChecker';
 import { Container, Card } from 'react-bootstrap';
 import Header from '../components/mainpage/Header';
 import Footer from '../components/mainpage/Footer';
+import { ResumeProvider } from '../components/context/ResumeContext';
 const ResumeBuilder = () => {
-  const [summary, setSummary] = useState("");
-
   return (
     <>
     <Header/>
@@ -20,9 +19,9 @@ const ResumeBuilder = () => {
           <p className="text-center text-muted mb-4" style={{ fontSize: '1rem' }}>
             Create a professional resume to impress recruiters and beat the bots 🚀
           </p>
-
-          <ResumeTabs summary={summary} setSummary={setSummary} />
-
+          <ResumeProvider>
+          <ResumeTabs/>
+          </ResumeProvider>
           {/* OR Line */}
        {/* OR Line */}
 <div className="text-center my-5">

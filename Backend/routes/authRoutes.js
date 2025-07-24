@@ -10,16 +10,16 @@ router.post('/login', login);
 // Google OAuth
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login', session: true }),
+  passport.authenticate('google', { failureRedirect: `${process.env.CLIENT_URL}/login`, session: true }),
   (req, res) => {
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
 );
 
 // LinkedIn OAuth
-router.get('/linkedin', passport.authenticate('linkedin', { scope: ['r_emailaddress', 'r_liteprofile'] }));
+router.get('/linkedin', passport.authenticate('linkedin', { scope: ['openid', 'profile', 'email'] }));
 router.get('/linkedin/callback',
-  passport.authenticate('linkedin', { failureRedirect: '/login', session: true }),
+  passport.authenticate('linkedin', { failureRedirect: `${process.env.CLIENT_URL}/login`, session: true }),
   (req, res) => {
     res.redirect(`${process.env.CLIENT_URL}/dashboard`);
   }
