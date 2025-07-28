@@ -16,7 +16,7 @@ const Feature = ({ id, icon, image, title, description, buttonText }) => {
         navigate('/email-generator');
         break;
       case 'job-alerts':
-        alert('Job Alerts launching soon!');
+        navigate('/job-alerts');
         break;
       case 'training-courses':
         alert('Training Courses launching soon!');
