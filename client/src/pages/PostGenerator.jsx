@@ -52,7 +52,7 @@ const PostGenerator = () => {
       const response = await fetch("http://localhost:5000/api/post/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: userInput }),
+        body: JSON.stringify({ prompt: userInput }),
       });
 
       const data = await response.json();
@@ -152,7 +152,7 @@ const PostGenerator = () => {
 
       {/* Generator Section */}
       <motion.section
-        className="hero"
+        className="hero overflow-y-scroll"
         ref={generatorRef}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -189,43 +189,34 @@ const PostGenerator = () => {
         {/* Platform Icons */}
         {Object.keys(platformPosts).length > 0 && (
           <motion.div
-            className="platform-icons"
+            className="platform-icons "
             style={{ marginTop: '1.5rem' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
             <h3>Choose a platform to view post:</h3>
-            <motion.div
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '1rem' }}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                visible: { transition: { staggerChildren: 0.1 } },
-              }}
-            >
-              {socialPlatforms.map(({ name, icon }) => (
-                <motion.button
-                  key={name}
-                  onClick={() => setSelectedPlatform(name)}
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  style={{
-                    padding: '10px 15px',
-                    borderRadius: '8px',
-                    border: '1px solid #ddd',
-                    background: selectedPlatform === name ? '#333' : '#fff',
-                    color: selectedPlatform === name ? '#fff' : '#111',
-                    cursor: 'pointer',
-                     fontSize: '1.2rem',
-                  }}
-                >
-                  {icon} {name}
-                </motion.button>
-              ))}
-            </motion.div>
+            <div className="container">
+  <div className="row gy-2 gx-2 justify-content-center">
+    {socialPlatforms.map(({ name, icon }) => (
+      <div key={name} className="col-4 d-flex justify-content-center">
+        <motion.button
+          onClick={() => setSelectedPlatform(name)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`btn ${
+            selectedPlatform === name ? 'btn-dark' : 'btn-outline-dark'
+          } d-flex align-items-center gap-1 w-100 px-2 py-2`}
+          style={{ fontSize: "0.85rem", whiteSpace: "nowrap" }}
+        >
+          {icon}
+          <span>{name}</span>
+        </motion.button>
+      </div>
+    ))}
+  </div>
+</div>
+
           </motion.div>
         )}
 
