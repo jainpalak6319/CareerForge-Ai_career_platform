@@ -13,7 +13,7 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import ResumeBuilder from './pages/ResumeBuilder';
 import OAuthSuccess from './pages/auth/OAuthSuccess';
 import Unauthorized from './pages/Unauthorized';
-
+import EmailGenerator from './pages/EmailGenerator';
 // Dashboards
 import JobSeekerDashboard from './pages/dashboard/JobSeekerDashboard';
 import RecruiterDashboard from './pages/dashboard/RecruiterDashboard';
@@ -36,6 +36,7 @@ const App = () => {
           <Route path="/signup/recruiter" element={<RecruiterSignup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/resume-builder" element={<ResumeBuilder />} />
+          <Route path="/email-generator" element={<EmailGenerator />} />
           <Route path="/oauth-success" element={<OAuthSuccess />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 

@@ -13,7 +13,7 @@ const Feature = ({ id, icon, image, title, description, buttonText }) => {
         alert('Social Post Generator launching soon!');
         break;
       case 'email-generator':
-        alert('Email Generator launching soon!');
+        navigate('/email-generator');
         break;
       case 'job-alerts':
         alert('Job Alerts launching soon!');

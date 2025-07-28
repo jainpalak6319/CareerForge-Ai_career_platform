@@ -28,13 +28,13 @@ const Header = () => {
       
       <nav>
         <ul>
-          <li><a href="#home">Home</a></li>
+          <li><a href="/mainpage">Home</a></li>
           <li className="dropdown">
             <a href="#features">Features <i className="fas fa-chevron-down dropdown-arrow"></i></a>
             <div className="dropdown-content">
               <a href="/resume-builder">Resume Builder</a>
               <a href="#post-generator">Post Generator</a>
-              <a href="#email-generator">Email Generator</a>
+              <a href="/email-generator">Email Generator</a>
               <a href="#job-alerts">Job Alerts</a>
               <a href="#training-courses">Training Courses</a>
             </div>
@@ -60,7 +60,7 @@ const Header = () => {
       
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
         <ul>
-          <li><a href="#home" onClick={() => setMenuOpen(false)}>Home</a></li>
+          <li><a href="/mainpage" onClick={() => setMenuOpen(false)}>Home</a></li>
           <li><a href="#features" onClick={() => setMenuOpen(false)}>Features</a></li>
           <li><a href="#membership" onClick={() => setMenuOpen(false)}>Membership</a></li>
           <li><a href="#categories" onClick={() => setMenuOpen(false)}>Explore Categories</a></li>
