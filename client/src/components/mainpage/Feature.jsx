@@ -10,7 +10,7 @@ const Feature = ({ id, icon, image, title, description, buttonText }) => {
         navigate('/resume-builder');
         break;
       case 'post-generator':
-        alert('Social Post Generator launching soon!');
+        navigate('/post-generator');
         break;
       case 'email-generator':
         navigate('/email-generator');

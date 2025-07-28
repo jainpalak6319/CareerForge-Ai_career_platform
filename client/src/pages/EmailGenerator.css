@@ -1,4 +1,4 @@
-  :root {
+:root {
             --primary-dark: #2D2F4A;
             --accent: #D96BA0;
             --background: #FFFFFF;
@@ -407,4 +407,4 @@
 input[type="tel"] {
   font-family: monospace;
   letter-spacing: 1px;
-}
+} 

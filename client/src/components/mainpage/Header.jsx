@@ -33,7 +33,7 @@ const Header = () => {
             <a href="#features">Features <i className="fas fa-chevron-down dropdown-arrow"></i></a>
             <div className="dropdown-content">
               <a href="/resume-builder">Resume Builder</a>
-              <a href="#post-generator">Post Generator</a>
+              <a href="/post-generator">Post Generator</a>
               <a href="/email-generator">Email Generator</a>
               <a href="#job-alerts">Job Alerts</a>
               <a href="#training-courses">Training Courses</a>
