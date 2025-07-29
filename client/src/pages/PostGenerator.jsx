@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -33,6 +33,16 @@ const PostGenerator = () => {
   const [platformPosts, setPlatformPosts] = useState({});
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [toastMessage, setToastMessage] = useState("");
+  useEffect(() => {
+  if (toastMessage) {
+    const timeout = setTimeout(() => {
+      setToastMessage('');
+    }, 3000); // auto-hide after 3 seconds
+
+    return () => clearTimeout(timeout); // clean up timer
+  }
+}, [toastMessage]);
+
   const generatorRef = useRef(null);
 
   const scrollToGenerator = () => {
@@ -313,7 +323,13 @@ const PostGenerator = () => {
       </motion.section>
 
       {/* Toast Notification */}
-      {toastMessage && <Toast message={toastMessage} onClose={() => setToastMessage('')} />}
+      <Toast
+  message={toastMessage}
+  show={!!toastMessage}
+  onClose={() => setToastMessage("")}
+/>
+
+
     </div>
      <Footer/>
     </>
