@@ -302,7 +302,7 @@
             margin-top: 30px;
         }
 
-        .btn-success {
+        .email-generator-container .btn-success {
             background: var(--gradient-4);
             border: none;
             padding: 12px 30px;
@@ -311,7 +311,7 @@
             transition: all 0.3s;
         }
 
-        .btn-success:hover {
+        .email-generator-container .btn-success:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(67, 233, 123, 0.4);
         }
