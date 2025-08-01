@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,8 +20,19 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+   const handleMobileFeaturesClick = (e) => {
+    e.preventDefault();
+    setMobileDropdownOpen(!mobileDropdownOpen);
+  };
 
-  return (
+  const handleMobileMenuClose = () => {
+    setMenuOpen(false);
+    setMobileDropdownOpen(false);
+  };
+
+
+return (
+  <>
     <header>
       <div className="logo-container">
         <div className="logo">CF</div>
@@ -44,11 +57,10 @@ const Header = () => {
         </ul>
       </nav>
       
-       <Link to="/login" className="login-btn">
-  <i className="fa-solid fa-right-to-bracket"></i> Login
-</Link>
+      <Link to="/login" className="login-btn">
+        <i className="fa-solid fa-right-to-bracket"></i> Login
+      </Link>
 
-      
       <button 
         className={`hamburger ${menuOpen ? 'active' : ''}`} 
         onClick={() => setMenuOpen(!menuOpen)}
@@ -61,16 +73,33 @@ const Header = () => {
       <div className={`mobile-menu ${menuOpen ? 'active' : ''}`}>
         <ul>
           <li><a href="/mainpage" onClick={() => setMenuOpen(false)}>Home</a></li>
-          <li><a href="#features" onClick={() => setMenuOpen(false)}>Features</a></li>
+          <li>
+            <a
+              href="#features"
+              className={`mobile-features-toggle ${mobileDropdownOpen ? 'active' : ''}`}
+              onClick={handleMobileFeaturesClick}
+            >
+              Features <i className="fas fa-chevron-down dropdown-arrow"></i>
+            </a>
+            <div className={`mobile-dropdown-content ${mobileDropdownOpen ? 'active' : ''}`}>
+          <Link to="/resume-builder" onClick={handleMobileMenuClose}>Resume Builder</Link>
+          <Link to="/post-generator" onClick={handleMobileMenuClose}>Post Generator</Link>
+          <Link to="/email-generator" onClick={handleMobileMenuClose}>Email Generator</Link>
+          <Link to="/job-alerts" onClick={handleMobileMenuClose}>Job Alerts</Link>
+          <Link to="/training-courses" onClick={handleMobileMenuClose}>Training Courses</Link>
+          </div>
+
+          </li>
           <li><a href="#membership" onClick={() => setMenuOpen(false)}>Membership</a></li>
           <li><a href="#categories" onClick={() => setMenuOpen(false)}>Explore Categories</a></li>
         </ul>
-       <Link to="/login" className="login-btn" onClick={() => setMenuOpen(false)}>
-       <i className="fa-solid fa-right-to-bracket"></i> Login
-       </Link>
+        <Link to="/login" className="login-btn" onClick={() => setMenuOpen(false)}>
+          <i className="fa-solid fa-right-to-bracket"></i> Login
+        </Link>
       </div>
     </header>
-  );
+  </>
+);
 };
 
 export default Header;

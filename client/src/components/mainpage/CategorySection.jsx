@@ -6,7 +6,7 @@ const CategorySection = () => {
   const categories = [
     { name: "Technology", icon: "💻" },
     { name: "Finance", icon: "💰" },
-       { name: "Healthcare", icon: "🏥" },
+    { name: "Healthcare", icon: "🏥" },
     { name: "Marketing", icon: "📊" },
     { name: "Education", icon: "🎓" },
     { name: "Design", icon: "🎨" },
@@ -17,7 +17,13 @@ const CategorySection = () => {
     { name: "Human Resources", icon: "👥" },
     { name: "Media", icon: "📺" },
     { name: "Retail", icon: "🛍️" },
-    { name: "Hospitality", icon: "🏨" }
+    { name: "Hospitality", icon: "🏨" },
+    { name: 'Content Writer', icon: '✍' },
+  { name: 'Data Entry', icon: '📑' },
+  { name: 'Business Analyst', icon: '📊' },
+ { name: 'Driver', icon: '🚗' } 
+
+
   ];
 
   return (
