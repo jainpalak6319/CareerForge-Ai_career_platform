@@ -6,6 +6,9 @@ import { Container, Card } from 'react-bootstrap';
 import Header from '../components/mainpage/Header';
 import Footer from '../components/mainpage/Footer';
 import { ResumeProvider } from '../components/context/ResumeContext';
+import { ThemeProvider } from '../components/context/ThemeContext';
+import { TemplateProvider } from '../components/context/TemplateContext';
+
 const ResumeBuilder = () => {
   return (
     <>
@@ -19,9 +22,14 @@ const ResumeBuilder = () => {
           <p className="text-center text-muted mb-4" style={{ fontSize: '1rem' }}>
             Create a professional resume to impress recruiters and beat the bots 🚀
           </p>
-          <ResumeProvider>
-          <ResumeTabs/>
-          </ResumeProvider>
+          {/* ✅ Wrap all resume-related components in all 3 providers */}
+            <ResumeProvider>
+              <ThemeProvider>
+                <TemplateProvider>
+                  <ResumeTabs />
+                </TemplateProvider>
+              </ThemeProvider>
+            </ResumeProvider>
           {/* OR Line */}
        {/* OR Line */}
 <div className="text-center my-5">

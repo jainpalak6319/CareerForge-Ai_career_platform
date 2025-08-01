@@ -1,11 +1,10 @@
-// src/context/TemplateContext.jsx
-import React, { createContext, useState } from 'react';
+// src/context/TemplateContext.js
+import { createContext, useState } from 'react';
 
 export const TemplateContext = createContext();
 
 export const TemplateProvider = ({ children }) => {
-  const [template, setTemplate] = useState('modern'); // 'classic' | 'modern' | 'two-column'
-
+  const [template, setTemplate] = useState('classic'); // default
   return (
     <TemplateContext.Provider value={{ template, setTemplate }}>
       {children}

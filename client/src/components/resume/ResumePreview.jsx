@@ -3,11 +3,33 @@ import React, { useContext, useRef } from 'react';
 import { ResumeContext } from '../context/ResumeContext';
 import { Button } from 'react-bootstrap';
 import html2pdf from 'html2pdf.js';
+import { ThemeContext } from '../context/ThemeContext';
+import { TemplateContext } from '../context/TemplateContext';
+import ThemeTemplateSwitcher from './ThemeTemplateSwitcher';
+import ClassicTemplate from '../templates/ClassicTemplate';
+import ModernTemplate from '../templates/ModernTemplate';
+import TwoColumnTemplate from '../templates/TwoColumnTemplate';
+
+// Reusable section header style
+const sectionHeaderStyle = {
+  color: '#2D2F4A',
+  borderLeft: '4px solid #2D2F4A',
+  paddingLeft: '10px',
+  marginTop: '1.5rem',
+};
 
 const ResumePreview = ({ onBack }) => {
   const { resumeData } = useContext(ResumeContext);
   const resumeRef = useRef();
-
+  const { theme } = useContext(ThemeContext);
+  const { template } = useContext(TemplateContext);
+  // Define theme styles
+const themeStyles = {
+  light: { background: '#fff', color: '#333' },
+  dark: { background: '#1e1e1e', color: '#f5f5f5' },
+  professional: { background: '#f4f4f4', color: '#2D2F4A' },
+};
+  const appliedThemeStyle = themeStyles[theme] || themeStyles.light;
   const handleDownloadPDF = () => {
     const element = resumeRef.current;
 
@@ -31,8 +53,14 @@ const ResumePreview = ({ onBack }) => {
     summary,
     certificates,
   } = resumeData;
-
+ // 🟢 Select correct template component
+  let RenderedTemplate = null;
+  if (template === 'classic') RenderedTemplate = <ClassicTemplate data={resumeData} />;
+  else if (template === 'modern') RenderedTemplate = <ModernTemplate data={resumeData} />;
+  else if (template === 'two-column') RenderedTemplate = <TwoColumnTemplate data={resumeData} />;
   return (
+    <>
+    <ThemeTemplateSwitcher/>
     <div style={{ position: 'relative', padding: '1rem', fontFamily: 'Poppins, sans-serif' }}>
       {/* Back to Edit button */}
       <Button
@@ -59,107 +87,15 @@ const ResumePreview = ({ onBack }) => {
           padding: '20px',
           background: '#fff',
           color: '#333',
+          ...appliedThemeStyle
         }}
       >
-        {Object.keys(formData).length > 0 && (
-          <>
-            <h2 style={{ color: '#2D2F4A', marginBottom: '0' }}>{formData.fullName}</h2>
-            <p style={{ marginTop: '0.5rem', fontSize: '0.95rem' }}>
-              {formData.email && `${formData.email} | `}
-              {formData.phone && `${formData.phone} | `}
-              {formData.location && `${formData.location} `}
-              {formData.linkedin && `| `}<a href={formData.linkedin} target="_blank" rel="noopener noreferrer">{formData.linkedin && 'LinkedIn'}</a>
-              {formData.portfolio && ` | `}<a href={formData.portfolio} target="_blank" rel="noopener noreferrer">{formData.portfolio && 'Portfolio'}</a>
-            </p>
-            <hr />
-          </>
-        )}
-
-        {summary && (
-          <>
-            <h4 style={sectionHeaderStyle}>Professional Summary</h4>
-            <p>{summary}</p>
-            <hr />
-          </>
-        )}
-
-        {education.length > 0 && (
-          <>
-            <h4 style={sectionHeaderStyle}>Education</h4>
-            <ul>
-              {education.map((edu, i) => (
-                <li key={i}>
-                  {edu.degree} from {edu.school} ({edu.year})
-                </li>
-              ))}
-            </ul>
-            <hr />
-          </>
-        )}
-
-        {skills.length > 0 && (
-          <>
-            <h4 style={sectionHeaderStyle}>Skills</h4>
-            <p>{skills.join(', ')}</p>
-            <hr />
-          </>
-        )}
-
-        {experience.length > 0 && (
-          <>
-            <h4 style={sectionHeaderStyle}>Experience</h4>
-            {experience.map((exp, i) => (
-              <div key={i}>
-                <strong>{exp.jobTitle}</strong> at {exp.company} ({exp.duration})
-                <p>{exp.description}</p>
-              </div>
-            ))}
-            <hr />
-          </>
-        )}
-
-        {projects.length > 0 && (
-          <>
-            <h4 style={sectionHeaderStyle}>Projects</h4>
-            {projects.map((proj, i) => (
-              <div key={i}>
-                <strong>{proj.title}</strong> - {proj.link && <a href={proj.link}>View</a>}
-                <p>Tools Used - {proj.tech}</p>
-                <p>{proj.description}</p>
-              </div>
-            ))}
-            <hr />
-          </>
-        )}
-
-        {certificates.some(cert => cert.name?.trim() !== '') && (
-          <>
-            <h4 style={sectionHeaderStyle}>Certificates</h4>
-            <ul>
-              {certificates.map((cert, i) => (
-                cert.name?.trim() && (
-                  <li key={i}>
-                    {cert.name}
-                    {cert.issuer && ` by ${cert.issuer}`}
-                    {cert.date && ` on ${cert.date}`}
-                    {cert.link && ` - (${cert.link})`}
-                  </li>
-                )
-              ))}
-            </ul>
-          </>
-        )}
+         {RenderedTemplate}
       </div>
     </div>
+    </>
   );
-};
-
-// Reusable section header style
-const sectionHeaderStyle = {
-  color: '#2D2F4A',
-  borderLeft: '4px solid #2D2F4A',
-  paddingLeft: '10px',
-  marginTop: '1.5rem',
+  
 };
 
 export default ResumePreview;
