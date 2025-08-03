@@ -184,7 +184,7 @@ const PostGenerator = () => {
           placeholder="Write your content here or paste a link..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
-          style={{ width: '80%', padding: '1rem', marginBottom: '1rem', borderRadius: '10px' }}
+          style={{ width: '80%', padding: '1rem', marginBottom: '1rem', borderRadius: '10px', height:'150px'}}
         />
 
         <input
@@ -234,13 +234,6 @@ const PostGenerator = () => {
         {selectedPlatform && (
           <motion.div
             className="selected-post"
-            style={{
-              marginTop: '2rem',
-              background: '#f5f5f5',
-              color: 'black',
-              padding: '1rem',
-              borderRadius: '10px',
-            }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -249,13 +242,7 @@ const PostGenerator = () => {
             <textarea
               readOnly
               value={platformPosts[selectedPlatform]}
-              style={{
-                width: '80%',
-                padding: '1rem',
-                borderRadius: '8px',
-                background: '#fff',
-                color: '#000',
-              }}
+              
             />
             <button onClick={handleCopy}>Copy to Clipboard</button>
           </motion.div>
@@ -310,17 +297,6 @@ const PostGenerator = () => {
       </motion.section>
 
       {/* CTA Bottom Section */}
-      <motion.section
-        className="cta-section"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-      >
-        <h2>One tool, endless possibilities</h2>
-        <p>Explore how our toolkit makes content creation and growth so much simpler.</p>
-        <button onClick={scrollToGenerator}>Get started now →</button>
-      </motion.section>
 
       {/* Toast Notification */}
       <Toast
