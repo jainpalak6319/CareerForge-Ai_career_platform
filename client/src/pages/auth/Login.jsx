@@ -26,36 +26,37 @@ const Login = () => {
   }, []);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setValidated(true);
+  e.preventDefault();
 
-    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const isPasswordValid = password.trim() !== '';
+  try {
+    const response = await axios.post("http://localhost:5000/api/auth/login", {
+      email,
+      password,
+    });
 
-    if (!isEmailValid) {
-      toast.error('Please enter a valid email address');
-      return;
+    const { token, user } = response.data;
+
+    // Save token & user
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // Notify other components like Header
+    window.dispatchEvent(new Event("userLoggedIn"));
+
+    toast.success("Login successful!");
+
+    // 🔁 Redirect based on role
+    if (user.role === "recruiter") {
+     navigate("/dashboard/recruiter");
+    } else {
+      navigate("/mainpage"); // jobseeker or default
     }
 
-    if (!isPasswordValid) {
-      toast.error('Password is required');
-      return;
-    }
+  } catch (error) {
+    toast.error("Login failed: " + error.response?.data?.message || "Server error");
+  }
+};
 
-    // 🔐 Backend Axios login call
-    try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
-
-      localStorage.setItem("token", data.token);
-      toast.success("Login successful!");
-      navigate("/dashboard");
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Login failed. Please try again.");
-    }
-  };
 
   return (
     <Container fluid className="min-vh-100 d-flex align-items-center justify-content-center bg-light">

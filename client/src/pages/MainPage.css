@@ -953,8 +953,25 @@ footer::before {
 }
 
 @media (max-width: 768px) {
+  .mobile-profile-container {
+  transition: all 0.3s ease;
+}
+
+.mobile-profile-container button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.mobile-profile-container .btn-link:hover {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
   /* Hide desktop navigation */
   nav {
+  display: none;
+}
+.user-info{
   display: none;
 }
 
