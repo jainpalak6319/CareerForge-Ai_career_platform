@@ -1,74 +1,87 @@
-/* src/components/ProfileSidebar.css */
-
 .profile-sidebar-overlay {
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1100;
   display: flex;
   justify-content: flex-end;
-  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .profile-sidebar {
-  width: 320px;
-  background: #fff;
+  width: 350px;
+  max-width: 90%;
+  background: #ffffff;
+  height: 100%;
   padding: 1.5rem;
-  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
-  animation: slideIn 0.3s ease;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
-.profile-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.profile-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.5rem;
-}
-
-.user-role {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-.profile-info p {
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+.slide-in {
+  animation: slideIn 0.3s ease forwards;
 }
 
 @keyframes slideIn {
   from {
     transform: translateX(100%);
-  } to {
-    transform: translateX(0);
+  }
+  to {
+    transform: translateX(0%);
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  } to {
-    opacity: 1;
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.profile-header {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.profile-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #ddd;
+}
+
+.user-role {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.profile-info {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 500px) {
+  .profile-sidebar {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 10px;
   }
 }

@@ -1,11 +1,10 @@
-// src/components/ProfileSidebar.jsx
 import React from 'react';
 import './ProfileSidebar.css';
 
 const ProfileSidebar = ({ user, onClose }) => {
   return (
     <div className="profile-sidebar-overlay" onClick={onClose}>
-      <div className="profile-sidebar" onClick={(e) => e.stopPropagation()}>
+      <div className="profile-sidebar slide-in" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>×</button>
         <div className="profile-header">
           <img
