@@ -31,11 +31,11 @@ const Login = () => {
   try {
     const response = await axios.post("http://localhost:5000/api/auth/login", {
       email,
-      password,
+      password
     });
 
     const { token, user } = response.data;
-
+console.log("Frontend login response user:", user);  // 👀 check if education & location come here
     // Save token & user
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));

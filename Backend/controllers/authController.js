@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
 exports.signup = async (req, res) => {
@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );
-
+  console.log("Login response user:", user);
     console.log("Login successful");
     return res.status(200).json({
       message: "Login successful",
@@ -75,7 +75,9 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        education: user.education,   // 👈 add this
+        location: user.location,
       }
     });
 

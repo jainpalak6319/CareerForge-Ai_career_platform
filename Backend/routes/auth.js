@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
-const User = require('../models/User'); // MongoDB model
+const User = require('../models/user'); // MongoDB model
 const { generateToken } = require('../utils/jwt');
 
 router.post('/google-login', async (req, res) => {

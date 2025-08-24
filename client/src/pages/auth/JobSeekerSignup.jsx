@@ -65,7 +65,7 @@ const JobSeekerSignup = () => {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.user.role);
-
+      localStorage.setItem('careerforge-user', JSON.stringify(data.user)); // 👈 save full user
       toast.success('Job seeker signup successful!');
       navigate('/login');
     } catch (err) {

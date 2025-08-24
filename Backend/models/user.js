@@ -6,7 +6,10 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: function() { return !this.googleId; } }, // Only required if not using Google
   googleId: { type: String },
   linkedinId: { type: String },
-  role: { type: String, enum: ['jobseeker', 'recruiter'], default: 'jobseeker' }
+  role: { type: String, enum: ['jobseeker', 'recruiter'], default: 'jobseeker' },
+  education: String,
+  location:String
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Prevent OverwriteModelError
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);
