@@ -32,8 +32,21 @@ exports.signup = async (req, res) => {
 
     const savedUser = await newUser.save();
     console.log("User saved:", savedUser);
+      // 👉 SEND RESPONSE (you missed this earlier)
+    return res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: savedUser._id,
+        name: savedUser.name,
+        email: savedUser.email,
+        role: savedUser.role,
+        education: savedUser.education,
+        location: savedUser.location,
+        skills: savedUser.skills
+      }
+    });
 
-    return res.status(201).json({ message: "User created successfully", user: savedUser });
+    
 
   } catch (error) {
     console.error("Signup error:", error.message);
@@ -78,6 +91,7 @@ exports.login = async (req, res) => {
         role: user.role,
         education: user.education,   // 👈 add this
         location: user.location,
+        skills: user.skills
       }
     });
 

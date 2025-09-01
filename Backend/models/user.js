@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
   linkedinId: { type: String },
   role: { type: String, enum: ['jobseeker', 'recruiter'], default: 'jobseeker' },
   education: String,
-  location:String
+  skills:[String],
+  location:String,
+  
 });
 
 // Prevent OverwriteModelError

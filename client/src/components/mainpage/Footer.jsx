@@ -18,10 +18,10 @@ const Footer = () => {
            <div className="footer-column">
           <h4>Tools</h4>
           <ul>
-            <li><a href="#resume-builder">Resume Builder</a></li>
-            <li><a href="#post-generator">Post Generator</a></li>
-            <li><a href="#email-generator">Email Generator</a></li>
-            <li><a href="#job-alerts">Job Alerts</a></li>
+            <li><a href="/resume-builder">Resume Builder</a></li>
+            <li><a href="/post-generator">Post Generator</a></li>
+            <li><a href="/email-generator">Email Generator</a></li>
+            <li><a href="/job-alerts">Job Alerts</a></li>
             <li><a href="#training-courses">Training Courses</a></li>
           </ul>
         </div>

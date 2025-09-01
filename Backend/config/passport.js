@@ -1,6 +1,6 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const OpenIDConnectStrategy = require('passport-openidconnect').Strategy;
-const User = require('../models/User');
+const User = require('../models/user');
 
 module.exports = function (passport) {
   // Session serialization
@@ -29,7 +29,10 @@ module.exports = function (passport) {
         googleId: profile.id,
         role: 'jobseeker',
         provider: 'google',
-        avatar: profile.photos?.[0]?.value || ''
+        avatar: profile.photos?.[0]?.value || '',
+        location: "",
+        education: "",
+        skills: []
       });
       done(null, newUser);
     }

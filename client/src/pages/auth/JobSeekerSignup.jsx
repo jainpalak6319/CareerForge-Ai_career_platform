@@ -31,7 +31,7 @@ const JobSeekerSignup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { fullName, email, password, confirmPassword } = formData;
+    const { fullName, email, password, confirmPassword, skills} = formData;
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!fullName || !email || !password || !confirmPassword) {
@@ -48,6 +48,11 @@ const JobSeekerSignup = () => {
       toast.error('Passwords do not match.');
       return;
     }
+   // 👉 Convert skills string → array
+  const skillsArray = formData.skills
+  .split(',')
+  .map((s) => s.trim())
+  .filter((s) => s.length > 0);
 
     // ✅ Backend integration begins here
     try {
@@ -58,7 +63,7 @@ const JobSeekerSignup = () => {
         role: 'jobseeker', // or 'jobseeker' if your backend expects that
         location: formData.location,
         education: formData.education,
-        skills: formData.skills,
+        skills: skillsArray,
         }, {
     withCredentials: true
       });
