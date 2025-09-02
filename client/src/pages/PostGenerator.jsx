@@ -13,8 +13,7 @@ import {
 import Toast from "../components/common/Toast";
 import { motion } from "framer-motion";
 import "../styles/PostGenerator.css";
-import Header from '../components/mainpage/Header';
-import Footer from '../components/mainpage/Footer';
+
 const socialPlatforms = [
   { name: "Instagram", icon: <FaInstagram /> },
   { name: "LinkedIn", icon: <FaLinkedin /> },
@@ -104,7 +103,7 @@ const PostGenerator = () => {
 
   return (
     <>
-    <Header/>
+    
     <div className="post-generator-wrapper" style={{ background: '#FFFFFF', color: '#333333' }}>
       {/* Hero Section */}
       <motion.section
@@ -307,7 +306,7 @@ const PostGenerator = () => {
 
 
     </div>
-     <Footer/>
+     
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer>
@@ -30,7 +30,7 @@ const Footer = () => {
           <h4>Company</h4>
           <ul>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#team">Our Team</a></li>
+            <li><Link to="/our-team">Our Team</Link></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#privacy">Privacy Policy</a></li>

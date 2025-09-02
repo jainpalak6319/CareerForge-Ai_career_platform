@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ToastContainer } from 'react-toastify';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import ScrollToTop from './components/ScrollToTop';
+import Layout from "./components/Layout";
+
 // Pages
 import MainPage from './pages/MainPage';
 import Login from './pages/auth/Login';
@@ -16,6 +18,8 @@ import Unauthorized from './pages/Unauthorized';
 import EmailGenerator from './pages/EmailGenerator';
 import PostGenerator from './pages/PostGenerator';
 import JobAlert from './pages/JobAlert';
+import OurTeam from "./pages/OurTeam";
+
 // Dashboards
 import JobSeekerDashboard from './pages/dashboard/JobSeekerDashboard';
 import RecruiterDashboard from './pages/dashboard/RecruiterDashboard';
@@ -23,28 +27,33 @@ import RecruiterDashboard from './pages/dashboard/RecruiterDashboard';
 // Routes
 import PrivateRoute from './routes/PrivateRoute';
 
-
 const App = () => {
   return (
     <>
       <Router>
-         <ScrollToTop /> {/* Placed here to trigger on route changes */}
+        <ScrollToTop /> {/* Trigger on route changes */}
+
         <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<MainPage />} />
+          {/* Routes that use Layout (public pages) */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/resume-builder" element={<ResumeBuilder />} />
+            <Route path="/email-generator" element={<EmailGenerator />} />
+            <Route path="/post-generator" element={<PostGenerator />} />
+            <Route path="/job-alerts" element={<JobAlert />} />
+            <Route path="/our-team" element={<OurTeam />} />
+          </Route>
+
+          {/* Auth Routes (without Layout) */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup/role" element={<SignupRole />} />
           <Route path="/signup/jobseeker" element={<JobSeekerSignup />} />
           <Route path="/signup/recruiter" element={<RecruiterSignup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/resume-builder" element={<ResumeBuilder />} />
-          <Route path="/email-generator" element={<EmailGenerator />} />
-          <Route path="/post-generator" element={<PostGenerator />} />
-          <Route path="/job-alerts" element={<JobAlert />} />
           <Route path="/oauth-success" element={<OAuthSuccess />} />
           <Route path="/unauthorized" element={<Unauthorized />} />
 
-          {/* Protected Routes */}
+          {/* Protected Routes (dashboards) */}
           <Route
             path="/dashboard/jobseeker"
             element={

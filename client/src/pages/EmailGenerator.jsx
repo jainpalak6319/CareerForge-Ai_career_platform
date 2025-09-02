@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './EmailGenerator.css';
-import Header from '../components/mainpage/Header';
 import '../lib/fontAwesome'; // FontAwesome setup
-import Footer from '../components/mainpage/Footer';
+
 
 // Step Indicator Component
 const StepIndicator = ({ currentStep }) => {
@@ -710,7 +709,7 @@ const validateForm = () => {
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       
-      <Header />
+     
       
       <main className="main-content">
         <div className="container">
@@ -729,7 +728,7 @@ const validateForm = () => {
         </div>
       </main>
       
-      <Footer />
+   
     </div>
   );
 };

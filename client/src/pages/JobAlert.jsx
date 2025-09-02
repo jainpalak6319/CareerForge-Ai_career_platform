@@ -4,8 +4,7 @@ import ResumeUpload from '../components/job-alert/ResumeUpload';
 import AIAnalysis from '../components/job-alert/AIAnalysis.jsx';
 import CompanySuggestions from '../components/job-alert/CompanySuggestions';
 import JobListings from '../components/job-alert/JobListings';
-import Header from '../components/mainpage/Header';
-import Footer from '../components/mainpage/Footer';
+
 import './JobAlert.css';
 
 function JobAlert() {
@@ -194,7 +193,7 @@ function JobAlert() {
 
   return (
     <div className="app">
-      <Header />
+      
       <button className="sidebar-toggle" onClick={toggleSidebar}>
         <i className="fas fa-filter"></i>
       </button>
@@ -235,7 +234,7 @@ function JobAlert() {
         </main>
       </div>
       
-      <Footer />
+     
     </div>
   );
 }
