@@ -1,0 +1,117 @@
+/* 🎨 Specific to OurTeam */
+.ourteam-section {
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #2D2F4A, #D96BA0, #333333, #F5F5F5);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  padding: 60px 20px;
+  /* ✅ Center everything vertically */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ourteam-title {
+  font-size: 3.5rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.ourteam-highlight {
+  color: #FFD1E8;
+}
+
+.ourteam-typed {
+  color: #ffffff;
+  margin-top: 15px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  min-height: 40px;
+}
+
+.ourteam-desc {
+  color: #F5F5F5;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+/* Cards */
+.ourteam-card-wrapper {
+  position: absolute;
+  width: 22rem;
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+ margin: 250px auto 0;  /* pushes the whole card block down instead */
+}
+
+.ourteam-card-img {
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+}
+
+.ourteam-card-body {
+  background-color: #fff;
+  text-align: center;
+  padding: 12px;
+}
+
+.ourteam-card-body h5 {
+  color: #2D2F4A;
+  font-weight: 600;
+}
+
+.ourteam-card-body p {
+  color: #D96BA0;
+}
+
+/* Custom Controls */
+.ourteam-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 360px; /* push below carousel */
+}
+
+.ourteam-controls button {
+  background-color: #ffffff;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  color: #2D2F4A;
+}
+
+.ourteam-controls button:hover {
+  transform: scale(1.1);
+  background-color: #D96BA0;
+  color: #fff;
+}
+
+/* Modal */
+.ourteam-modal-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  color: #2D2F4A;
+}
+
+.ourteam-modal-role {
+  color: #D96BA0;
+  margin-bottom: 15px;
+}
+
+.ourteam-modal-text {
+  color: #333333;
+  line-height: 1.6;
+}

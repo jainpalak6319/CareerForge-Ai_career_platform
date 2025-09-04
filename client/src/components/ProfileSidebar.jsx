@@ -1,6 +1,10 @@
 import React from 'react';
 import './ProfileSidebar.css';
-
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/login');
+  };
 const ProfileSidebar = ({ user, onClose }) => {
   return (
     <div className="profile-sidebar-overlay" onClick={onClose}>
@@ -59,7 +63,7 @@ const ProfileSidebar = ({ user, onClose }) => {
           <a href="/watchlist" className="sidebar-link">⭐ Watchlist</a>
           <a href="/resume" className="sidebar-link">📑 My Resume</a>
           <a href="/help" className="sidebar-link">❓ Help Center</a>
-          <a href="/logout" className="sidebar-link logout">🚪 Logout</a>
+          <a href="/logout" className="sidebar-link logout" onClick={() => { handleLogout()}}>🚪 Logout</a>
         </div>
       </div>
     </div>
