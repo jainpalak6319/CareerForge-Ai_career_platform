@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="footer-content">
         <div className="footer-column">
           <h4>Career Forge</h4>
-          <p>Empowering professionals worldwide with AI-powered career tools...</p>
+          <p>Empowering professionals worldwide with AI-powered career tools and resources to unlock their potential and achieve their dreams.</p>
           <div className="social-icons">
              <a href="#"><FontAwesomeIcon icon={['fab', 'facebook-f']} /></a>
         <a href="#"><FontAwesomeIcon icon={['fab', 'twitter']} /></a>
@@ -29,7 +29,7 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Company</h4>
           <ul>
-            <li><a href="#about">About Us</a></li>
+            <li><a href="/about">About Us</a></li>
             <li><Link to="/our-team">Our Team</Link></li>
             <li><a href="#careers">Careers</a></li>
             <li><a href="#contact">Contact</a></li>

@@ -19,6 +19,10 @@ import EmailGenerator from './pages/EmailGenerator';
 import PostGenerator from './pages/PostGenerator';
 import JobAlert from './pages/JobAlert';
 import OurTeam from "./pages/OurTeam";
+import About from "./pages/About";
+
+
+
 
 // Dashboards
 import JobSeekerDashboard from './pages/dashboard/JobSeekerDashboard';
@@ -42,6 +46,8 @@ const App = () => {
             <Route path="/post-generator" element={<PostGenerator />} />
             <Route path="/job-alerts" element={<JobAlert />} />
             <Route path="/our-team" element={<OurTeam />} />
+            <Route path="/about" element={<About />} />
+
           </Route>
 
           {/* Auth Routes (without Layout) */}

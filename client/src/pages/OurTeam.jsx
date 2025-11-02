@@ -6,6 +6,7 @@ import { ReactTyped } from "react-typed";
 
 import palakImg from "../assets/team/palak.jpg";
 import riyaImg from "../assets/team/riya.jpg";
+import arshitImg from "../assets/team/arshit.jpg";
 // import aishaImg from "../assets/team/aisha.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -31,7 +32,7 @@ const teamMembers = [
   {
     name: "Arshit Raj",
     role: "Product Designer",
-    image: "aishaImg",
+    image: arshitImg,
     linkedin: "https://linkedin.com/in/example",
     email: "contact@careerforge.com",
   },
